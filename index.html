@@ -150,7 +150,7 @@
               <span class=" nav-link text-light fs-5 fw-lighter">$</span>
             </div>
 
-            <button class="btn btn-outline-success " type="submit">loge in</button>
+            <button class="btn btn-outline-success " type="submit">log in</button>
 
 
           </ul>
@@ -178,15 +178,15 @@
     </div>
   </div>
 
-  <section id="about" class="p-4 m-4 about">
+  <section id="about" class="about">
     <div class="container">
       <div class="head">
         <h1 class="fs-1 fw-bold mt-4 mb-4">Check entry requirements <br>
           to anywhere and apply</h1>
         <p class="fs-3">You take care of your trip, we take care of your visa.</p>
       </div>
-  
-      <form id="visaForm" class="d-inline-flex align-items-center gap-4 p-4 rounded shadow p-5 ">
+
+      <form id="visaForm" class="d-inline-flex align-items-center gap-4 p-4 rounded shadow mb-5 mt-3 ">
         <!-- Passenger Nationality -->
         <div class="d-flex flex-column w-100 ">
           <label for="nationality" class="fw-bold text-white">Passenger Nationality</label>
@@ -312,7 +312,7 @@
           <i class="fa-solid fa-arrow-right"></i>
         </button>
       </form>
-  
+
       <div id="visaDetails" class="container p-4 d-none">
         <h3 class="fs-4 fw-bold text-success mb-3 ms-2">eVisa is required</h3>
         <p class="text-secondary ms-2">You will need an eVisa to travel.</p>
@@ -340,7 +340,7 @@
               </div>
             </div>
           </div>
-      
+
           <div class="col-12 col-md-6 col-lg-4">
             <div class="visa-requirements p-4 rounded shadow-lg border-0 bg-light text-dark">
               <div class="visa-option border p-3 rounded shadow-sm d-flex flex-column gap-3">
@@ -363,7 +363,7 @@
               </div>
             </div>
           </div>
-      
+
           <div class="col-12 col-md-6 col-lg-4">
             <div class="visa-requirements p-4 rounded shadow-lg border-0 bg-light text-dark">
               <div class="visa-option border p-3 rounded shadow-sm d-flex flex-column gap-3">
@@ -394,7 +394,7 @@
                   <i class="fa-solid fa-users text-success fs-2"></i>
                   <div>
                     <label class="form-check-label fw-semibold" for="transitVisa">
-                     Family visit
+                      Family visit
                     </label>
                     <input class="form-check-input ms-2" type="radio" name="visaType" id="family visitVisa">
                     <p class="text-muted small mt-2">Includes visa for family visit purposes.</p>
@@ -434,45 +434,46 @@
         </div>
         <!-- Add other visa options similarly -->
         <div class="text-center mt-5">
-          <a href="appform/app.html"><button id="startApplicationBtn" class="btn btn-success btn-lg px-5 py-2 rounded-pill shadow-sm">
-            Start the application
-          </button></a>
+          <a href="appform/app.html"><button id="startApplicationBtn"
+              class="btn btn-success btn-lg px-5 py-2 rounded-pill shadow-sm">
+              Start the application
+            </button></a>
         </div>
       </div>
-      
-      
-
-     
 
 
-      </div>
+
+
+
+
+    </div>
     </div>
   </section>
-  
+
   <script>
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  const visaOptions = document.querySelectorAll('input[name="visaType"]');
-  
-  // عند التغيير في خيار التأشيرة
-  visaOptions.forEach(option => {
-    option.addEventListener('change', function() {
-      if (this.checked) {
-        const visaName = this.closest('.visa-option').querySelector('label').innerText;
-        const visaPrice = this.closest('.visa-option').querySelector('.visa-price').innerText;
+    document.addEventListener('DOMContentLoaded', function () {
+      const visaOptions = document.querySelectorAll('input[name="visaType"]');
 
-        // استرجاع قيمة الوجهة
-        const destination = document.getElementById('destination').value;
+      // عند التغيير في خيار التأشيرة
+      visaOptions.forEach(option => {
+        option.addEventListener('change', function () {
+          if (this.checked) {
+            const visaName = this.closest('.visa-option').querySelector('label').innerText;
+            const visaPrice = this.closest('.visa-option').querySelector('.visa-price').innerText;
 
-        // تخزين البيانات في sessionStorage
-        sessionStorage.setItem('visaName', visaName);
-        sessionStorage.setItem('visaPrice', visaPrice);
-        sessionStorage.setItem('destination', destination);
-      }
+            // استرجاع قيمة الوجهة
+            const destination = document.getElementById('destination').value;
+
+            // تخزين البيانات في sessionStorage
+            sessionStorage.setItem('visaName', visaName);
+            sessionStorage.setItem('visaPrice', visaPrice);
+            sessionStorage.setItem('destination', destination);
+          }
+        });
+      });
     });
-  });
-});
 
 
 
@@ -480,30 +481,30 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("nationality").addEventListener("change", function () {
       const nationality = this.value;
       const destination = document.getElementById("destination");
-  
+
       if (nationality === destination.value) {
         destination.value = ""; // إعادة تعيين الوجهة
       }
     });
-  
+
     // عند تغيير الوجهة، إعادة تعيين الجنسية إذا كانت متطابقة
     document.getElementById("destination").addEventListener("change", function () {
       const destination = this.value;
       const nationality = document.getElementById("nationality");
-  
+
       if (destination === nationality.value) {
         nationality.value = ""; // إعادة تعيين الجنسية
       }
     });
-  
+
     // عند النقر على زر Check Requirements
     document.getElementById("checkRequirements").addEventListener("click", function (event) {
       event.preventDefault(); // منع السلوك الافتراضي للنموذج
-  
+
       const nationality = document.getElementById("nationality").value;
       const destination = document.getElementById("destination").value;
       const visaDetails = document.getElementById("visaDetails"); // افتراض وجود عنصر يعرض تفاصيل التأشيرة
-  
+
       if (nationality && destination) {
         // إظهار قسم تفاصيل التأشيرة إذا تم الاختيار
         visaDetails.classList.remove("d-none");
@@ -513,11 +514,11 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("Please select both nationality and destination.");
       }
     });
-  
+
     // عند النقر على زر Start Application
     document.getElementById("startApplicationBtn").addEventListener("click", function (e) {
       const selectedVisa = document.querySelector('input[name="visaType"]:checked');
-  
+
       if (!selectedVisa) {
         e.preventDefault(); // منع الانتقال إلى الصفحة إذا لم يتم اختيار التأشيرة
         alert("Please select a visa type before starting the application.");
@@ -527,8 +528,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   </script>
-  
-  
+
+
 
 
 
